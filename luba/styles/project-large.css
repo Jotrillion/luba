@@ -1,0 +1,10 @@
+@media (min-width: 900px) {
+    .gallery {
+        grid-template-columns: minmax(240px, 320px) 1fr;
+        align-items: start;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

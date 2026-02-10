@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LubaCulture</title>
+    <link rel="stylesheet" href="styles/project.css">
+    <link rel="stylesheet" href="styles/project-large.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+
+    <meta name="description"
+        content="LubaCulture is a platform promoting luba culture worldwide.">
+    <meta name="author" content="Josaphat Ngandu">
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <meta property="og:title" content="Directory">
+    <meta property="og:description"
+        content="Discover my luba culture  website , LubaCulture is a platform promoting luba culture worldwide. ">
+    <meta property="og:url" content="http://127.0.0.1:5500/finalproject/finalproject.html">
+
+    <meta property="og:image" content="http://127.0.0.1:5500/finalproject/logos.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Libre+Baskerville:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="scripts/project.js" type="module"></script>
+    
+    <script src="scripts/dates.js" defer></script>
+
+    <script src="scripts/join.js" defer></script>
+    <script src="scripts/gallery.js" type="module"></script>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="header-content">
+            
+            <h1 class="heading">LUBA CULTURE</h1>
+
+            
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="face"><a href="#gallery">Gallery</a></li>
+                <li class="link"> <a href=# target="_blank">Sound</a></li>
+                <li class="Review"><a href="#history">History</a></li>
+                <li class="current"><a href=#>Voting</a></li>
+                <li class="surprise"><a href=#>Surprise</a></li>
+                <li class="forum"><a href=#>Discussion Forum</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-content">
+        <section id="gallery" class="gallery">
+            <div class="gallery-intro">
+                <p class="eyebrow">Digital Artifact Exhibition</p>
+                <h2>Virtual Gallery of Luba Art</h2>
+                <p>
+                    Explore a curated collection of Luba objects from museum collections worldwide. Each artifact is
+                    displayed with details that reveal its story. Use the filter to focus on works from the Democratic
+                    Republic of the Congo.
+                </p>
+                <div class="gallery-actions">
+                    <button class="btn" id="refresh-gallery" type="button">Refresh selection</button>
+                    <button class="btn ghost" id="load-more" type="button">Load more</button>
+                </div>
+                <div class="gallery-filter" role="group" aria-label="Gallery filter">
+                    <span class="filter-label">Filter</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="filter-drc">
+                        <span class="toggle-track" aria-hidden="true"></span>
+                        <span class="toggle-text">DR Congo only</span>
+                    </label>
+                    <span class="filter-hint">Switch on to show only artifacts from the Democratic Republic of the Congo.</span>
+                </div>
+                <p id="gallery-status" class="gallery-status" aria-live="polite"></p>
+            </div>
+            <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+        </section>
+        <section id="history" class="history">
+            <h2>History</h2>
+            <p class="history-intro">Open each chapter to explore the Luba story, from the early Upemba settlements to the
+                kingdom's expansion and legacy.</p>
+
+            <details open>
+                <summary>Origins and foundations</summary>
+                <div class="history-content">
+                    <p>
+                        Archaeological research shows that the Upemba Depression had been occupied continuously since at least
+                        the 4th century AD. By the 6th century, fishing people lived on lakeshores, worked iron, and traded palm
+                        oil. By the 10th century, the people of Upemba diversified their economy, combining fishing, farming,
+                        and metal-working.
+                    </p>
+                    <p>
+                        Metal-workers relied on traders to bring copper and charcoal for smelting. Traders exported salt and iron
+                        items, and imported glass beads and cowry shells from the distant Indian Ocean. Over time, social
+                        stratification and governance began to form, and the centre of the empire in the Kabongo region emerged
+                        as a key area for further research.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Oral traditions and royal lineages</summary>
+                <div class="history-content">
+                    <p>
+                        Luba-Katanga oral traditions describe the lineage of Kyubaka Ubaka and Kibumba Bumba, and trace the
+                        movement westward into the lands of the Luba. Figures such as Nkongolo, Mbidi Kiluwe, and Kalala Ilunga
+                        anchor the stories of sacred kingship, conflict, and the rise of Ilunga's court at Mwilunde.
+                    </p>
+                    <p>
+                        These narratives, recorded in the early 20th century, emphasize the sacred role of leaders, the power of
+                        ritual symbols, and the formation of dynasties through alliances, contests, and succession struggles.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Empire, government, and memory</summary>
+                <div class="history-content">
+                    <p>
+                        The Luba kingdom developed a durable form of government led by the Mulopwe (sacred king) and a court of
+                        nobles known as Bamfumus. Kings ruled through clan leaders while the Bambudye secret society preserved
+                        the memory of the kingdom's rulers and customs.
+                    </p>
+                    <p>
+                        The Mbudye tradition links rulers to Kalala Ilunga, a revered hunter and culture hero credited with
+                        introducing advanced iron forging techniques. Villages and shrines dedicated to royal legacies dotted the
+                        Luba heartland.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Economy, arts, and beliefs</summary>
+                <div class="history-content">
+                    <p>
+                        Luba traders connected the Congolese forest to the mineral-rich Copperbelt region. A tribute system
+                        redistributed agricultural, hunting, and mining resources, while the ruling class held a monopoly on
+                        trade items such as salt, copper, and iron ore.
+                    </p>
+                    <p>
+                        The arts held high status, with Luba staffs, headrests, and royal seats featuring female figures linked
+                        to spiritual and ancestral power. Beliefs in prophetic dreams and ancestor worship shaped artistic forms,
+                        while the kasala poetic tradition carried myths, proverbs, and historical narratives.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Expansion and decline</summary>
+                <div class="history-content">
+                    <p>
+                        From 1700 to 1860, the Luba expanded their influence through tributaries and the establishment of "fire
+                        kingdoms" on frontier regions. Expansion emphasized tribute and trade rather than direct conquest.
+                    </p>
+                    <p>
+                        In the late 19th century, long-distance trade and external raids destabilized the kingdom. The Luba
+                        Kingdom fractured after succession disputes in 1889 and later became part of the Congo Free State.
+                    </p>
+                </div>
+            </details>
+        </section>
+        <h3>Join Us</h3>
+        <p>Become a member of Luba culture today and start exploring the culture, history and music of luba people.</p>
+       
+        <div id="addsect" class="info-sections">
+
+
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="address">
+            <p class="pro">LUBA CULTURE</p>
+            <p>RUE DE LA PRINCE, GOMBE</p>
+            <p>GOMBE,MAIL 999</p>
+            <p>INFO@GOMBE.COM</p>
+            <p>(150)458609</p>
+        </div>
+        <div class="social">
+            <a class="social-link" href="https://github.com/Jotrillion" target="_blank" aria-label="GitHub">
+                <img src="images/github.svg" alt="GitHub">
+            </a>
+            <a class="social-link" href="https://www.facebook.com/djanyngandulilsaint?locale=fr_FR" target="_blank" aria-label="Facebook">
+                <img src="images/facebook.svg" alt="Facebook">
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/j-djany-elyon-llsmith-ngandu-llm-msc-mba-b7a10756" target="_blank" aria-label="LinkedIn">
+                <img src="images/linkedin.svg" alt="LinkedIn">
+            </a>
+        </div>
+        <div class="project">
+            <p>WDD 330 CLASS PROJECT</p>
+            <p>JOSAPHAT NGANDU</p>
+            <p>
+                &copy;
+                <span id="currentyear"></span> <span>&#x1F499;</span>LUBACULTURE <span>&#x1F499;</span>
+
+            <p id="lastModified"></p>
+            
+
+    </footer>
+
+
+
+</body>
+
+</html>
