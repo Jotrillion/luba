@@ -51,7 +51,7 @@
         <nav class="main-nav">
             <ul class="nav-list">
                 <li class="face"><a href="#gallery">Gallery</a></li>
-                <li class="link"> <a href=# target="_blank">Sound</a></li>
+                <li class="link"> <a href="#music">Sound</a></li>
                 <li class="Review"><a href="#history">History</a></li>
                 <li class="current"><a href=#>Voting</a></li>
                 <li class="surprise"><a href=#>Surprise</a></li>
@@ -170,6 +170,25 @@
                 </div>
             </details>
         </section>
+
+        <section id="music" class="music">
+            <div class="music-intro">
+                <p class="eyebrow">Luba Music & Culture</p>
+                <h2>Discover Luba Sound</h2>
+                <p>
+                    Explore Luba musicians, traditional instruments, and recordings from the MusicBrainz database.
+                    Click the buttons below to load different categories of musical content.
+                </p>
+                <div class="music-actions">
+                    <button class="btn" id="load-artists" type="button">Load Artists</button>
+                    <button class="btn ghost" id="load-instruments" type="button">Load Instruments</button>
+                    <button class="btn ghost" id="load-recordings" type="button">Load Recordings</button>
+                </div>
+                <p id="music-status" class="music-status" aria-live="polite"></p>
+            </div>
+            <div id="music-grid" class="music-grid" aria-live="polite"></div>
+        </section>
+
         <h3>Join Us</h3>
         <p>Become a member of Luba culture today and start exploring the culture, history and music of luba people.</p>
        
