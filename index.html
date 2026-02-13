@@ -51,15 +51,45 @@
         <nav class="main-nav">
             <ul class="nav-list">
                 <li class="face"><a href="#gallery">Gallery</a></li>
-                <li class="link"> <a href="#music">Sound</a></li>
+                <li class="link"><a href="#music">Sound</a></li>
                 <li class="Review"><a href="#history">History</a></li>
-                <li class="current"><a href=#>Voting</a></li>
-                <li class="surprise"><a href=#>Surprise</a></li>
-                <li class="forum"><a href=#>Discussion Forum</a></li>
+                <li class="current"><a href="#voting">Voting</a></li>
+                <li class="surprise"><a href="#surprise">Surprise</a></li>
+                <li class="forum"><a href="#forum">Discussion Forum</a></li>
             </ul>
         </nav>
     </header>
     <main id="main-content">
+        <!-- Live Cultural Search Bar -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" 
+                       id="search-input" 
+                       class="search-input" 
+                       placeholder="Search Luba culture, art, and music..." 
+                       aria-label="Search">
+                <button class="search-clear" aria-label="Clear search">✕</button>
+            </div>
+            <p id="search-status" class="search-status" aria-live="polite"></p>
+            <div id="search-results" class="gallery-grid"></div>
+        </section>
+
+        <!-- User Stats Dashboard -->
+        <section class="user-dashboard">
+            <div class="dashboard-header">
+                <h2>My Heritage Dashboard</h2>
+                <div class="dashboard-actions">
+                    <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme">🌙 Dark Mode</button>
+                    <select id="language-select" class="btn ghost">
+                        <option value="english">English</option>
+                        <option value="french">Français</option>
+                    </select>
+                    <button id="export-data" class="btn ghost">📥 Export Data</button>
+                </div>
+            </div>
+            <div id="user-stats" class="user-stats"></div>
+        </section>
+
         <section id="gallery" class="gallery">
             <div class="gallery-intro">
                 <p class="eyebrow">Digital Artifact Exhibition</p>
@@ -171,6 +201,47 @@
             </details>
         </section>
 
+        <!-- Community Voting Section -->
+        <section id="voting" class="voting">
+            <div class="voting-intro">
+                <p class="eyebrow">Community Spotlight</p>
+                <h2>Weekly Cultural Artifact Vote</h2>
+                <p>
+                    Help choose this week's featured Luba artifact! Cast your vote for the piece that resonates most with you.
+                    Voting resets every week.
+                </p>
+                <p id="voting-status" class="voting-status" aria-live="polite"></p>
+            </div>
+            <div id="voting-grid" class="gallery-grid"></div>
+        </section>
+
+        <!-- Surprise Me Feature -->
+        <section id="surprise" class="surprise">
+            <div class="surprise-intro">
+                <p class="eyebrow">Cultural Discovery</p>
+                <h2>Surprise Me!</h2>
+                <p>
+                    Not sure where to start? Let us surprise you with a random piece of Luba culture.
+                    Choose your preferences and discover something new!
+                </p>
+                <div class="surprise-controls">
+                    <select id="surprise-type" class="btn ghost">
+                        <option value="artifact">Art & Artifacts</option>
+                        <option value="music">Music & Recordings</option>
+                    </select>
+                    <select id="surprise-category" class="btn ghost">
+                        <option value="">Any Category</option>
+                        <option value="mask">Masks</option>
+                        <option value="stool">Stools</option>
+                        <option value="staff">Staffs</option>
+                        <option value="sculpture">Sculptures</option>
+                    </select>
+                    <button id="surprise-me-btn" class="btn">✨ Surprise Me!</button>
+                </div>
+                <p id="surprise-status" class="surprise-status" aria-live="polite"></p>
+            </div>
+        </section>
+
         <section id="music" class="music">
             <div class="music-intro">
                 <p class="eyebrow">Luba Music & Culture</p>
@@ -189,6 +260,40 @@
             <div id="music-grid" class="music-grid" aria-live="polite"></div>
         </section>
         
+        <!-- Discussion Forum Section -->
+        <section id="forum" class="forum">
+            <div class="forum-intro">
+                <p class="eyebrow">Community Voices</p>
+                <h2>Discussion & Oral History Forum</h2>
+                <p>
+                    Share your stories, family histories, and personal connections to Luba culture.
+                    Connect with others who are exploring and preserving this rich heritage.
+                </p>
+            </div>
+            <div class="forum-container">
+                <div class="forum-card">
+                    <h3>💬 Family Stories</h3>
+                    <p>Share oral histories passed down through generations</p>
+                    <button class="btn ghost">Start Discussion</button>
+                </div>
+                <div class="forum-card">
+                    <h3>🎭 Cultural Practices</h3>
+                    <p>Discuss traditional ceremonies and customs</p>
+                    <button class="btn ghost">Join Conversation</button>
+                </div>
+                <div class="forum-card">
+                    <h3>🎶 Music & Dance</h3>
+                    <p>Talk about traditional Luba music and dance forms</p>
+                    <button class="btn ghost">Contribute</button>
+                </div>
+                <div class="forum-card">
+                    <h3>❓ Ask Experts</h3>
+                    <p>Get answers from cultural historians and researchers</p>
+                    <button class="btn ghost">Ask Question</button>
+                </div>
+            </div>
+        </section>
+
         <h3>Join Us</h3>
         <p>Become a member of Luba culture today and start exploring the culture, history and music of luba people.</p>
        

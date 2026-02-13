@@ -1,4 +1,13 @@
-// MusicBrainz API Configuration
+// Main Application File - Luba Culture Website
+// Integrates all modules and initializes the application
+
+import * as API from './api-module.js';
+import * as DataManagement from './data-management.js';
+import * as UI from './ui-module.js';
+import * as Search from './search-module.js';
+import * as Events from './events-module.js';
+
+// MusicBrainz API Configuration (keeping existing code)
 const MUSICBRAINZ_API = {
     baseUrl: "https://musicbrainz.org/ws/2",
     userAgent: "LubaCulture/1.0 (info@lubaculture.com)",
@@ -409,4 +418,160 @@ window.MusicBrainz = {
     loadLubaMusic
 };
 
-console.log("MusicBrainz API module loaded. Click the buttons in the Sound section to load data.");
+// Application Initialization
+const initializeApp = () => {
+    console.log('Initializing Luba Culture application...');
+    
+    // Initialize storage and apply saved preferences
+    DataManagement.initializeStorage();
+    
+    // Initialize event listeners
+    Events.initializeEventListeners();
+    Events.initializeKeyboardShortcuts();
+    
+    // Initialize search bar if present
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const searchStatus = document.getElementById('search-status');
+    
+    if (searchInput) {
+        Search.initializeSearchBar(searchInput, searchResults, searchStatus, {
+            category: 'all',
+            placeholder: 'Search Luba culture, art, and music...'
+        });
+    }
+    
+    // Initialize Surprise Me feature
+    initializeSurpriseMe();
+    
+    // Initialize Voting section
+    initializeVoting();
+    
+    // Display user stats
+    displayUserStats();
+    
+    console.log('Luba Culture application initialized successfully!');
+};
+
+// Initialize Surprise Me feature
+const initializeSurpriseMe = () => {
+    const surpriseBtn = document.getElementById('surprise-me-btn');
+    if (!surpriseBtn) return;
+    
+    surpriseBtn.addEventListener('click', async () => {
+        const typeSelect = document.getElementById('surprise-type');
+        const categorySelect = document.getElementById('surprise-category');
+        const statusEl = document.getElementById('surprise-status');
+        
+        const type = typeSelect?.value || 'artifact';
+        const category = categorySelect?.value || null;
+        
+        await Events.surpriseMe({
+            type,
+            category,
+            statusElement: statusEl
+        });
+    });
+};
+
+// Initialize Voting section
+const initializeVoting = async () => {
+    const votingGrid = document.getElementById('voting-grid');
+    if (!votingGrid) return;
+    
+    try {
+        // Fetch Luba artifacts from Cleveland Museum
+        const artifacts = await API.searchClevelandArtifacts('Luba', 50);
+        if (!artifacts || artifacts.length === 0) {
+            // Fallback to Met Museum if Cleveland fails
+            const artifactIds = await API.searchMetArtifacts('Luba', true);
+            if (!artifactIds || artifactIds.length === 0) return;
+            const randomIds = shuffleArray(artifactIds).slice(0, 5);
+            const metArtifacts = await API.getMetObjects(randomIds);
+            renderVotingCards(metArtifacts, votingGrid, 'met');
+        } else {
+            // Use Cleveland Museum artifacts
+            const randomArtifacts = shuffleArray(artifacts).slice(0, 5);
+            renderVotingCards(randomArtifacts, votingGrid, 'cleveland');
+        }
+        
+        // Check if user has voted
+        const myVote = DataManagement.getMyVote();
+        if (myVote) {
+            const statusEl = document.getElementById('voting-status');
+            if (statusEl) {
+                statusEl.textContent = `You voted for: ${myVote.name}`;
+            }
+        }
+    } catch (error) {
+        console.error('Failed to initialize voting:', error);
+    }
+};
+
+// Render voting cards from either source
+const renderVotingCards = (artifacts, container, source) => {
+    container.innerHTML = '';
+    artifacts.forEach((artifact, index) => {
+        const isCleveland = source === 'cleveland';
+        const votingCard = UI.renderVotingItem({
+            id: isCleveland ? artifact.id : artifact.objectID,
+            title: artifact.title || 'Untitled',
+            description: isCleveland ? artifact.technique : artifact.medium,
+            image: isCleveland ? artifact.images?.web?.url : artifact.primaryImageSmall,
+            votes: Math.floor(Math.random() * 100) // Mock vote count
+        }, index);
+        container.appendChild(votingCard);
+    });
+};
+
+// Display user statistics
+const displayUserStats = () => {
+    const statsContainer = document.getElementById('user-stats');
+    if (!statsContainer) return;
+    
+    const stats = DataManagement.getStorageStats();
+    
+    statsContainer.innerHTML = `
+        <div class="stat-card">
+            <div class="stat-number">${stats.totalFavorites}</div>
+            <div class="stat-label">Favorites</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">${stats.recentlyViewed}</div>
+            <div class="stat-label">Recently Viewed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">${stats.hasVotedThisWeek ? 'Yes' : 'No'}</div>
+            <div class="stat-label">Voted This Week</div>
+        </div>
+    `;
+};
+
+// Utility function to shuffle array
+const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+};
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
+
+// Export modules globally for console access
+window.LubaCulture = {
+    API,
+    DataManagement,
+    UI,
+    Search,
+    Events,
+    MusicBrainz: window.MusicBrainz
+};
+
+console.log("Luba Culture application loaded. Access modules via window.LubaCulture");
