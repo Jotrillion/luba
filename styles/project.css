@@ -379,21 +379,27 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
+    perspective: 1200px;
 }
 
 .artifact-card {
     background: var(--sand);
     border-radius: var(--radius);
     overflow: hidden;
+    position: relative;
     box-shadow: 0 16px 30px var(--shadow);
     animation: rise 0.6s ease both;
     animation-delay: var(--delay, 0ms);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    will-change: transform;
+    transform-origin: center center;
 }
 
 .artifact-card:hover {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-8px) scale(1.01);
     box-shadow: 0 20px 40px var(--shadow);
 }
 
@@ -469,6 +475,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    perspective: 1200px;
 }
 
 .music-card {
@@ -479,6 +486,10 @@ main {
     animation: rise 0.6s ease both;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    will-change: transform;
+    transform-origin: center center;
 }
 
 .music-card::before {
@@ -493,7 +504,7 @@ main {
 }
 
 .music-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-6px) scale(1.01);
     box-shadow: 0 20px 40px var(--shadow);
 }
 
@@ -828,12 +839,14 @@ footer.footer {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     grid-auto-rows: 1fr;
+    perspective: 1200px;
 }
 
 .voting-card {
     background: #fff;
     border-radius: var(--radius);
     overflow: hidden;
+    position: relative;
     box-shadow: 0 10px 20px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: rise 0.6s ease both;
@@ -841,10 +854,14 @@ footer.footer {
     display: flex;
     flex-direction: column;
     height: 100%;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    will-change: transform;
+    transform-origin: center center;
 }
 
 .voting-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-6px) scale(1.01);
     box-shadow: 0 15px 30px var(--shadow);
 }
 
@@ -1052,6 +1069,7 @@ footer.footer {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    perspective: 1200px;
 }
 
 .stat-card {
@@ -1059,8 +1077,69 @@ footer.footer {
     color: #fff;
     padding: 1.5rem;
     border-radius: var(--radius);
+    position: relative;
     text-align: center;
     box-shadow: 0 10px 20px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    will-change: transform;
+    transform-origin: center center;
+}
+
+.artifact-card > *,
+.music-card > *,
+.voting-card > *,
+.stat-card > * {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+}
+
+.artifact-card::after,
+.music-card::after,
+.voting-card::after,
+.stat-card::after {
+    content: 'Luba Culture';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--moss), var(--earth));
+    color: #f9f4ee;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.artifact-card:hover > *,
+.music-card:hover > *,
+.voting-card:hover > *,
+.stat-card:hover > * {
+    opacity: 0;
+    transform: rotateY(180deg);
+}
+
+.artifact-card:hover::after,
+.music-card:hover::after,
+.voting-card:hover::after,
+.stat-card:hover::after {
+    opacity: 1;
+    transform: rotateY(0deg);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 14px 24px var(--shadow);
 }
 
 .stat-number {

@@ -556,3 +556,77 @@ This project serves multiple audiences:
 ---
 
 **🎉 Project Status: COMPLETE AND PRODUCTION READY 🎉**
+
+---
+
+## WDD 330 Course Outcomes Self-Assessment
+
+### 1) Become more efficient at applying innate curiosity and creativity
+
+I explored multiple cultural-data sources (Met Museum, Cleveland Museum, MusicBrainz) and combined them into one experience instead of relying on a single endpoint. Creativity is reflected in features like **Surprise Me**, **Community Spotlight Voting**, and **My Heritage Dashboard**, which turn static cultural data into interactive storytelling.
+
+### 2) Become more dexterous at exploring your environment
+
+I practiced exploring browser APIs (`fetch`, `localStorage`, `CustomEvent`, `Blob` download), external API docs, and existing code modules. I used modular architecture (`api-module`, `search-module`, `events-module`, `data-management`, `ui-module`) to understand and evolve the app efficiently.
+
+### 3) Become a person who enjoys helping and learning from others
+
+I built this project so users can discover and preserve Luba culture, then export their research data for sharing. The app design supports collaborative learning through curated content, discussion-ready sections, and reusable feature modules that are easy for others to read and improve.
+
+### 4) Use a divide-and-conquer approach to design solutions
+
+The app is split into focused modules:
+
+- **API layer**: external requests, retry logic, rate limiting
+- **Search layer**: debounced search, filtering, sorting
+- **UI layer**: card rendering, modal, skeleton states, toasts
+- **Event layer**: delegated clicks, keyboard shortcuts, interactions
+- **Data layer**: persistent storage, preferences, vote rules, exports
+
+This separation simplified development, debugging, and feature extension.
+
+### 5) Find and troubleshoot bugs
+
+I handled runtime and data issues with defensive coding: `try/catch`, API retry/backoff, fallback content when optional APIs are unavailable, stale-search protection, and weekly vote reset logic. I also validated feature behavior after styling and interaction changes.
+
+### 6) Develop and debug medium-complexity HTML/CSS/JS web technologies
+
+This project demonstrates medium-complexity front-end engineering through ES modules, multi-API integration, dynamic JSON rendering, advanced CSS interactions, event-driven UX, and persistent user state.
+
+---
+
+## Skill Development Outcome Evidence (Learning Objectives)
+
+### Learning Objective Evidence Table
+
+| Learning Objective | Description                                                                                             | Where can this be seen in your final personal project application?                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JavaScript         | Built robust modular logic with reusable functions across API, search, events, UI, and data management. | `scripts/project.js` initializes modules and coordinates app flow; `scripts/search-module.js` handles debounced async search; `scripts/events-module.js` handles delegated interactions. |
+| JavaScript         | Implemented async workflows, error handling, and user feedback states.                                  | `scripts/api-module.js` (`fetchWithRetry`, rate-limited requests); `scripts/ui-module.js` (loading skeletons, toasts, modal behavior).                                                   |
+| JavaScript         | Dynamic DOM updates from live data and user actions.                                                    | `scripts/ui-module.js` card renderers; `scripts/project.js` `initializeVoting()`, `displayUserStats()`, and dynamic section updates.                                                     |
+| Third-party APIs   | Used multiple real APIs to enrich coverage and avoid single-source dependency.                          | Met Museum + Cleveland Museum + MusicBrainz integrations in `scripts/api-module.js`.                                                                                                     |
+| Third-party APIs   | Effective API usage patterns: query params, headers, retries, and rate limiting.                        | `scripts/api-module.js` uses `URLSearchParams`, custom headers for MusicBrainz, backoff retries, and 1 req/sec throttling.                                                               |
+| Third-party APIs   | Fallback behavior when one source fails or returns limited results.                                     | `scripts/project.js` voting flow uses Cleveland first, then Met fallback; `scripts/api-module.js` combines sources in `searchAllSources()`.                                              |
+| JSON               | Processes nested JSON from museum and music APIs into normalized UI cards.                              | `scripts/ui-module.js` maps different JSON schemas (`artifact.images.web.url`, `recording['artist-credit']`, etc.).                                                                      |
+| JSON               | Handles arrays of objects for artifacts, artists, recordings, instruments, and narratives.              | `scripts/api-module.js` and `scripts/search-module.js` aggregate and filter result arrays; default narrative/translation JSON fallbacks included.                                        |
+| JSON               | Exports structured user data as downloadable JSON.                                                      | `scripts/data-management.js` `exportUserData()` and `downloadUserData()`.                                                                                                                |
+| CSS                | Applied transitions, transforms, and hover states across interactive components.                        | `styles/project.css` card hover effects, button hover states, link transitions, modal close hover transform.                                                                             |
+| CSS                | Applied animations to improve perceived responsiveness and visual quality.                              | `styles/project.css` keyframes: `rise`, `fadeIn`, `slideUp`, `pulse`, `shimmer`, plus animated modal and toast states.                                                                   |
+| CSS                | Added polished UI styling (rounded corners, shadows, gradients, responsive layouts, dark theme).        | `styles/project.css` uses CSS variables, box shadows, border-radius, gradients, responsive grids, and `[data-theme="dark"]` theme overrides.                                             |
+| Events             | Used event delegation and targeted handlers to improve performance and maintainability.                 | `scripts/events-module.js` document-level click delegation for `.favorite-btn`, `.artifact-details-btn`, `.vote-btn`.                                                                    |
+| Events             | Used keyboard, input, change, scroll, and custom events for richer UX.                                  | `scripts/events-module.js` keyboard shortcuts (`Ctrl/Cmd + K/T/E`), scroll nav highlighting, language `CustomEvent`; `scripts/search-module.js` debounced input events.                  |
+| Events             | Initialized app behavior on load and bound dynamic controls cleanly.                                    | `scripts/project.js` and `scripts/events-module.js` initialize listeners and feature modules during app startup.                                                                         |
+| Local Storage      | Persisted user favorites, preferences, history, and voting state across sessions.                       | `scripts/data-management.js` storage keys: `luba_my_heritage`, `luba_user_preferences`, `luba_interaction_history`, `luba_community_votes`, `luba_theme`.                                |
+| Local Storage      | Used safe serialization/parsing with fallback defaults and error handling.                              | `scripts/data-management.js` helper methods `getFromStorage()` and `saveToStorage()` with `try/catch`.                                                                                   |
+| Local Storage      | Used storage to drive UX (theme/language persistence, weekly vote rule, dashboard stats).               | `scripts/data-management.js` `initializeStorage()`, `castVote()`, `getStorageStats()`, and theme/language apply functions.                                                               |
+
+---
+
+### Overall Rating Reflection
+
+- **JavaScript**: Mastery (modular, async, non-trivial interactions in many places)
+- **Third-party APIs**: Proficient to Mastery (multiple rich APIs with practical safeguards)
+- **JSON**: Proficient to Mastery (dynamic processing of heterogeneous JSON structures)
+- **CSS**: Proficient (extensive transitions/animations/transforms and themed responsive UI)
+- **Events**: Mastery (many event types, delegation, keyboard shortcuts, custom events)
+- **Local Storage**: Proficient (effective persistence across key user workflows)
